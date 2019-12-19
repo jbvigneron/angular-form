@@ -1,0 +1,21 @@
+<table class="table table-striped" *ngIf="persons">
+  <tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Rôle / Promotion</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let person of persons">
+    <td width="25%">{{person.lastName}}</td>
+    <td width="25%">{{person.firstName}}</td>
+    <td width="30%">
+      {{ person | role }}
+      ({{ person | promotion }})
+    </td>
+    <td width="20%">
+      <button class="btn btn-warning" (click)="prepareEdit(person)">Modifier</button>
+      <button class="btn btn-danger" (click)="delete(person)">Supprimer</button>
+    </td>
+  </tr>
+</table>
+
