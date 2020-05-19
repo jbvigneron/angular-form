@@ -15,8 +15,8 @@ export class FormComponent {
 
   constructor(fb: FormBuilder, private readonly personsService: PersonsService) {
     this.form = fb.group({
-      lastName: ['', Validators.required],
-      firstName: ['', Validators.required],
+      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       role: ['', Validators.required],
       promotion: [null]
     });

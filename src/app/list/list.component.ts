@@ -15,7 +15,7 @@ export class ListComponent {
   }
 
   prepareEdit(person: Person) {
-    this.personsService.beginEditPerson(person);
+    this.personsService.prepareEditPerson(person);
   }
 
   delete(person: Person) {

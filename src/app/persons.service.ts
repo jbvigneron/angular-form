@@ -21,7 +21,7 @@ export class PersonsService {
     this.persons.push(person);
   }
 
-  public beginEditPerson(person: Person) {
+  public prepareEditPerson(person: Person) {
     this.onEdit.emit(person);
   }
 
