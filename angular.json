@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "PersonsApp": {
+    "angular-form": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/PersonsApp",
+            "outputPath": "dist/angular-form",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PersonsApp:build"
+            "browserTarget": "angular-form:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "PersonsApp:build:production"
+              "browserTarget": "angular-form:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PersonsApp:build"
+            "browserTarget": "angular-form:build"
           }
         },
         "test": {
@@ -114,15 +114,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "PersonsApp:serve"
+            "devServerTarget": "angular-form:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "PersonsApp:serve:production"
+              "devServerTarget": "angular-form:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "PersonsApp"
+  "defaultProject": "angular-form"
 }
