@@ -32,4 +32,4 @@ jobs:
         app-name: 'as-angular-form'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ffe75b8e7c7f4f6fa9b2fb77c63c509d }}
-        package: .
+        package: './dist/angular-form'
