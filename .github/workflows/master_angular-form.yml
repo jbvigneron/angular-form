@@ -35,6 +35,5 @@ jobs:
       uses: azure/webapps-deploy@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_381959c0775444d1bdd173ba44a2479d }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
