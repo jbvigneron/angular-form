@@ -10,7 +10,7 @@ import { PersonsService } from '../persons.service';
 })
 export class FormComponent {
   form: FormGroup;
-  promos = ['B1', 'B2', 'B3', 'I4', 'I5'];
+  promos = ['L1', 'L2', 'L3', 'M1', 'M2'];
   currentPerson: Person | undefined;
 
   constructor(fb: FormBuilder, private readonly personsService: PersonsService) {
@@ -39,7 +39,7 @@ export class FormComponent {
   }
 
   onSubmit() {
-    const person = this.form.value;
+    const person = this.form.value as Person;
 
     if (!this.currentPerson) {
       this.personsService.addPerson(person);
