@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Person } from 'src/app/models/person';
 import { Role } from 'src/app/models/role';
-import { PersonsService } from '../../services/persons.service';
+import { Store } from '@ngrx/store';
+import { partition } from 'rxjs';
+import { RootState } from '../../reducers';
+import { addPerson, finishEditPerson } from '../../actions';
 
 @Component({
   selector: 'app-form',
@@ -13,7 +16,8 @@ export class FormComponent {
   promos = ['L1', 'L2', 'L3', 'M1', 'M2'];
   mode: 'ADD' | 'EDIT';
 
-  constructor(fb: FormBuilder, private readonly personsService: PersonsService) {
+  constructor(fb: FormBuilder,
+    private readonly store: Store<RootState>) {
     this.form = fb.group({
       id: [null],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -37,21 +41,25 @@ export class FormComponent {
 
     this.mode = 'ADD';
 
-    this.personsService.onEdit.subscribe((person: Person) => {
+    const [onEdit$, onDelete$] = partition(
+      this.store.select(s => s.app.currentPerson), (person: Person) => !!person
+    );
+
+    onEdit$.subscribe(person => {
       this.mode = 'EDIT';
       this.form.patchValue(person);
     });
 
-    this.personsService.onDelete.subscribe(() => this.form.reset());
+    onDelete$.subscribe(() => this.form.reset());
   }
 
   onSubmit() {
     const person = this.form.value as Person;
 
     if (this.mode == 'ADD') {
-      this.personsService.add(person);
+      this.store.dispatch(addPerson({ person }));
     } else if (this.mode == 'EDIT') {
-      this.personsService.finishEdit(person);
+      this.store.dispatch(finishEditPerson({ person }));
     }
 
     this.mode = 'ADD';

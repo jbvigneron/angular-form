@@ -83,5 +83,8 @@
       }
     }
   },
-  "defaultProject": "angular-form"
+  "defaultProject": "angular-form",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
