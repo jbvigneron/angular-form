@@ -29,8 +29,8 @@
               <option *ngFor="let promo of promos" [ngValue]="promo">{{promo}}</option>
             </select>
           </div>
-          <button *ngIf="!currentPerson" [disabled]="form.invalid" class="btn btn-primary">Ajouter</button>
-          <button *ngIf="currentPerson" [disabled]="form.invalid" class="btn btn-primary">Modifier</button>
+          <button *ngIf="!currentPersonId" [disabled]="form.invalid" class="btn btn-primary">Ajouter</button>
+          <button *ngIf="currentPersonId" [disabled]="form.invalid" class="btn btn-primary">Modifier</button>
         </div>
       </div>
     </form>

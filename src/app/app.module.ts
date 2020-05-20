@@ -7,6 +7,10 @@ import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
 import { RolePipe } from './pipes/role.pipe';
 import { PromotionPipe } from './pipes/promotion.pipe';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { reducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { PromotionPipe } from './pipes/promotion.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

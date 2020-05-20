@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">Liste des étudiants et intervenants</div>
   <div class="card-body">
-    <table class="table" *ngIf="persons.length">
+    <table class="table" *ngIf="(persons$ | async) as persons">
       <tr>
         <th>Nom</th>
         <th>Prénom</th>

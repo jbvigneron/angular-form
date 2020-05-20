@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Person } from '../../models/person';
-import { PersonsService } from '../../services/persons.service';
+import { Store } from '@ngrx/store';
+import { RootState } from '../../reducers';
+import { Observable } from 'rxjs';
+import { beginEditPerson, deletePerson } from '../../actions';
 
 @Component({
   selector: 'app-list',
@@ -8,17 +11,17 @@ import { PersonsService } from '../../services/persons.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  persons: Person[];
+  persons$: Observable<Person[]>;
 
-  constructor(private readonly personsService: PersonsService) {
-    this.persons = this.personsService.getPersons();
+  constructor(private readonly store: Store<RootState>) {
+    this.persons$ = this.store.select(s => s.app.persons);
   }
 
   prepareEdit(person: Person) {
-    this.personsService.prepareEditPerson(person);
+    this.store.dispatch(beginEditPerson({ person }));
   }
 
   delete(person: Person) {
-    this.personsService.deletePerson(person.id);
+    this.store.dispatch(deletePerson({ id: person.id }));
   }
 }
