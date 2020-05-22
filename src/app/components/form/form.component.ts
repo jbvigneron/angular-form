@@ -4,7 +4,7 @@ import { Person } from 'src/app/models/person';
 import { Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { RootState } from '../../reducers';
-import { addPerson, finishEditPerson } from '../../actions';
+import { addPerson, finishEditPerson } from '../../actions/persons.actions';
 
 @Component({
   selector: 'app-form',

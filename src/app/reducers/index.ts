@@ -9,7 +9,8 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { Person } from '../models/person';
-import { addPerson, deletePerson, beginEditPerson, finishEditPerson } from '../actions';
+import { addPerson, deletePerson, beginEditPerson, finishEditPerson } from '../actions/persons.actions';
+import { loadTodosSuccess, loadTodosError } from '../actions/todo.actions';
 
 export const stateFeatureKey = 'state';
 
@@ -20,11 +21,15 @@ export interface RootState {
 export interface AppState {
   currentPerson: Person | undefined;
   persons: Person[];
+  todos: any[];
+  error: any | undefined;
 }
 
 export const initialState: AppState = {
   currentPerson: undefined,
-  persons: []
+  persons: [],
+  todos: [],
+  error: undefined
 };
 
 export const appReducer = createReducer(
@@ -41,19 +46,27 @@ export const appReducer = createReducer(
       persons: state.persons.concat(person)
     };
   }),
-  on(deletePerson, (state: AppState, action) => ({
+  on(deletePerson, (state, action) => ({
     ...state,
     persons: state.persons.filter(p => p.id !== action.id)
   })),
-  on(beginEditPerson, (state: AppState, action) => ({
+  on(beginEditPerson, (state, action) => ({
     ...state,
     currentPerson: action.person
   })),
-  on(finishEditPerson, (state: AppState, action) => ({
+  on(finishEditPerson, (state, action) => ({
     ...state,
     currentPerson: null,
     persons: state.persons.filter(p => p.id !== action.id)
       .concat(action.person)
+  })),
+  on(loadTodosSuccess, (state, action) => ({
+    ...state,
+    todos: action.todos
+  })),
+  on(loadTodosError, (state, action) => ({
+    ...state,
+    error: action.error
   }))
 );
 

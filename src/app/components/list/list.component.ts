@@ -3,7 +3,7 @@ import { Person } from '../../models/person';
 import { Store } from '@ngrx/store';
 import { RootState } from '../../reducers';
 import { Observable } from 'rxjs';
-import { beginEditPerson, deletePerson } from '../../actions';
+import { beginEditPerson, deletePerson } from '../../actions/persons.actions';
 
 @Component({
   selector: 'app-list',
