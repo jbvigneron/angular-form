@@ -1,7 +1,8 @@
 import { ActionReducerMap, MetaReducer, createReducer, on } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { Person } from '../models/person';
-import { addPerson, deletePerson, beginEditPerson, finishEditPerson } from '../actions';
+import { addPerson, deletePerson, beginEditPerson, finishEditPerson } from '../actions/persons.actions';
+import { loadTodosSuccess, loadTodosError } from '../actions/todo.actions';
 
 export const stateFeatureKey = 'state';
 
@@ -12,11 +13,15 @@ export interface RootState {
 export interface AppState {
   currentPerson: Person | undefined;
   persons: Person[];
+  todos: any[];
+  error: any | undefined;
 }
 
 export const initialState: AppState = {
   currentPerson: undefined,
-  persons: []
+  persons: [],
+  todos: [],
+  error: undefined
 };
 
 export const appReducer = createReducer(
@@ -41,6 +46,14 @@ export const appReducer = createReducer(
     ...state,
     currentPerson: null,
     persons: state.persons.filter(p => p.id !== id)
+  })),
+  on(loadTodosSuccess, (state: AppState, { todos }) => ({
+    ...state,
+    todos
+  })),
+  on(loadTodosError, (state: AppState, { error }) => ({
+    ...state,
+    error
   }))
 );
 

@@ -5,7 +5,7 @@ import { Role } from 'src/app/models/role';
 import { Store } from '@ngrx/store';
 import { partition } from 'rxjs';
 import { RootState } from '../../reducers';
-import { addPerson, finishEditPerson } from '../../actions';
+import { addPerson, finishEditPerson } from '../../actions/persons.actions';
 
 @Component({
   selector: 'app-form',

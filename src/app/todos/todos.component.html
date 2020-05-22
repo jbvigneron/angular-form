@@ -1,0 +1,14 @@
+<h1>Todos</h1>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Titre</th>
+    <th>Terminée ?</th>
+  </tr>
+  <tr *ngFor="let todo of (todos$ | async)">
+    <td>{{ todo.id }}</td>
+    <td>{{ todo.title }}</td>
+    <td>{{ todo.completed ? 'Oui' : 'Non' }}</td>
+  </tr>
+</table>
