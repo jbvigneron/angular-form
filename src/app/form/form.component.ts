@@ -21,15 +21,17 @@ export class FormComponent {
       promotion: [null]
     });
 
-    this.form.valueChanges.subscribe(value => {
-      const promotion = this.form.controls.promotion;
-      promotion.clearValidators();
+    this.form.controls.role.valueChanges.subscribe(role => {
+      const promotionControl = this.form.controls.promotion;
+      promotionControl.clearValidators();
 
-      if (value.role === 'E') {
-        promotion.setValidators(Validators.required);
-      } else if (value.role === 'I') {
-        value.promotion = null;
+      if (role === 'E') {
+        promotionControl.setValidators(Validators.required);
+      } else if (role === 'I') {
+        promotionControl.setValue(null);
       }
+
+      promotionControl.updateValueAndValidity();
     });
 
     this.personsService.onEdit.subscribe((person: Person) => {
