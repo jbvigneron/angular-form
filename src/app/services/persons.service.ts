@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Person } from './models/person';
+import { Person } from '../models/person';
 
 @Injectable({
   providedIn: 'root'

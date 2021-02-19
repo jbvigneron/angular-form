@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { FormComponent } from './form/form.component';
-import { ListComponent } from './list/list.component';
-import { RolePipe } from './role.pipe';
-import { PromotionPipe } from './promotion.pipe';
+import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './components/list/list.component';
+import { RolePipe } from './pipes/role.pipe';
+import { PromotionPipe } from './pipes/promotion.pipe';
 
 @NgModule({
   declarations: [
