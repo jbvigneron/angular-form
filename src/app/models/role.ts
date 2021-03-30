@@ -1,1 +1,4 @@
-export type Role = 'E' | 'I';
+export enum Role {
+  Etudiant,
+  Intervenant
+};

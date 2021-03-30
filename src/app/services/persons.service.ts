@@ -25,8 +25,8 @@ export class PersonsService {
     this.onEdit.emit(person);
   }
 
-  public finishEditPerson(id: number, person: Person) {
-    const index = this.persons.findIndex(p => p.id === id);
+  public finishEditPerson(person: Person) {
+    const index = this.persons.findIndex(p => p.id === person.id);
     this.persons.splice(index, 1, person);
   }
 

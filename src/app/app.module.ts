@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './components/list/list.component';
-import { RolePipe } from './pipes/role.pipe';
 import { PromotionPipe } from './pipes/promotion.pipe';
 
 @NgModule({
@@ -13,7 +12,6 @@ import { PromotionPipe } from './pipes/promotion.pipe';
     AppComponent,
     FormComponent,
     ListComponent,
-    RolePipe,
     PromotionPipe
   ],
   imports: [

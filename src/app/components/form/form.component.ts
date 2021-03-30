@@ -5,13 +5,12 @@ import { PersonsService } from '../../services/persons.service';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  templateUrl: './form.component.html'
 })
 export class FormComponent {
   form: FormGroup;
   promos = ['L1', 'L2', 'L3', 'M1', 'M2'];
-  currentPerson: Person | undefined;
+  mode: 'ADD' | 'EDIT';
 
   constructor(fb: FormBuilder, private readonly personsService: PersonsService) {
     this.form = fb.group({
@@ -34,8 +33,10 @@ export class FormComponent {
       promotionControl.updateValueAndValidity();
     });
 
+    this.mode = 'ADD';
+
     this.personsService.onEdit.subscribe((person: Person) => {
-      this.currentPerson = person;
+      this.mode = 'EDIT';
       this.form.patchValue(person);
     });
   }
@@ -43,13 +44,13 @@ export class FormComponent {
   onSubmit() {
     const person = this.form.value as Person;
 
-    if (!this.currentPerson) {
+    if (this.mode == 'ADD') {
       this.personsService.addPerson(person);
-    } else {
-      this.personsService.finishEditPerson(this.currentPerson.id, person);
+    } else if (this.mode == 'EDIT') {
+      this.personsService.finishEditPerson(person);
     }
 
-    this.currentPerson = null;
+    this.mode = 'ADD';
     this.form.reset();
   }
 }

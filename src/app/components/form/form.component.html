@@ -16,21 +16,21 @@
             <label>Rôle :</label>
             &nbsp;
             <label class="checkbox-inline">
-              <input type="radio" name="role" formControlName="role" value="E" /> Etudiant
+              <input type="radio" name="role" formControlName="role" value="Etudiant" /> Etudiant
             </label>
             &nbsp;
             <label class="checkbox-inline">
-              <input type="radio" name="role" formControlName="role" value="I" /> Intervenant
+              <input type="radio" name="role" formControlName="role" value="Intervenant" /> Intervenant
             </label>
           </div>
-          <div class="form-group" *ngIf="form.controls.role.value === 'E'">
+          <div class="form-group" *ngIf="form.controls.role.value === 'Etudiant'">
             <label>Promotion :</label>
             <select class="form-control" name="promotion" formControlName="promotion">
               <option *ngFor="let promo of promos" [ngValue]="promo">{{promo}}</option>
             </select>
           </div>
-          <button *ngIf="!currentPerson" [disabled]="form.invalid" class="btn btn-primary">Ajouter</button>
-          <button *ngIf="currentPerson" [disabled]="form.invalid" class="btn btn-primary">Modifier</button>
+          <button *ngIf="mode == 'ADD'" [disabled]="form.invalid" class="btn btn-primary">Ajouter</button>
+          <button *ngIf="mode == 'EDIT'" [disabled]="form.invalid" class="btn btn-primary">Modifier</button>
         </div>
       </div>
     </form>
