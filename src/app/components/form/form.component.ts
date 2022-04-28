@@ -46,9 +46,9 @@ export class FormComponent {
     const person = this.form.value as Person;
 
     if (this.mode == 'ADD') {
-      this.personsService.addPerson(person);
+      this.personsService.add(person);
     } else if (this.mode == 'EDIT') {
-      this.personsService.finishEditPerson(person);
+      this.personsService.finishEdit(person);
     }
 
     this.mode = 'ADD';

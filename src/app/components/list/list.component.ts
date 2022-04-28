@@ -10,14 +10,14 @@ export class ListComponent {
   persons: Person[];
 
   constructor(private readonly personsService: PersonsService) {
-    this.persons = this.personsService.getPersons();
+    this.persons = this.personsService.get();
   }
 
-  prepareEdit(person: Person) {
-    this.personsService.prepareEditPerson(person);
+  beginEdit(person: Person) {
+    this.personsService.beginEdit(person);
   }
 
   delete(person: Person) {
-    this.personsService.deletePerson(person.id);
+    this.personsService.delete(person.id);
   }
 }
