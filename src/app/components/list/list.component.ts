@@ -19,5 +19,6 @@ export class ListComponent {
 
   delete(person: Person) {
     this.personsService.delete(person.id);
+    this.personsService.onDelete.emit();
   }
 }

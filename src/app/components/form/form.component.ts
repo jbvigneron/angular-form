@@ -40,6 +40,8 @@ export class FormComponent {
       this.mode = 'EDIT';
       this.form.patchValue(person);
     });
+
+    this.personsService.onDelete.subscribe(() => this.form.reset());
   }
 
   onSubmit() {

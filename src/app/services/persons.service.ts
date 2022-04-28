@@ -7,6 +7,7 @@ import { Person } from '../models/person';
 export class PersonsService {
   private persons: Person[] = [];
   public onEdit = new EventEmitter<Person>();
+  public onDelete = new EventEmitter();
 
   public get() {
     return this.persons;
