@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Person } from 'src/app/models/person';
+import { Role } from 'src/app/models/role';
 import { PersonsService } from '../../services/persons.service';
 
 @Component({
@@ -20,13 +21,13 @@ export class FormComponent {
       promotion: [null]
     });
 
-    this.form.controls.role.valueChanges.subscribe(role => {
+    this.form.controls.role.valueChanges.subscribe((role: Role) => {
       const promotionControl = this.form.controls.promotion;
       promotionControl.clearValidators();
 
-      if (role === 'E') {
+      if (role === Role.Etudiant) {
         promotionControl.setValidators(Validators.required);
-      } else if (role === 'I') {
+      } else if (role === Role.Intervenant) {
         promotionControl.setValue(null);
       }
 
