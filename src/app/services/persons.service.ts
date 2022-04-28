@@ -7,30 +7,27 @@ import { Person } from '../models/person';
 export class PersonsService {
   private persons: Person[] = [];
   public onEdit = new EventEmitter<Person>();
+  public onDelete = new EventEmitter();
 
-  public getPersons() {
+  public get() {
     return this.persons;
   }
 
-  public addPerson(person: Person) {
-    const lastPerson = this.persons[this.persons.length - 1];
-    const lastId = (lastPerson && lastPerson.id) || 0;
-    const newId = lastId + 1;
-    person.id = newId;
-
+  public add(person: Person) {
+    person.id = new Date().getTime();
     this.persons.push(person);
   }
 
-  public prepareEditPerson(person: Person) {
+  public beginEdit(person: Person) {
     this.onEdit.emit(person);
   }
 
-  public finishEditPerson(person: Person) {
+  public finishEdit(person: Person) {
     const index = this.persons.findIndex(p => p.id === person.id);
     this.persons.splice(index, 1, person);
   }
 
-  public deletePerson(id: number) {
+  public delete(id: number) {
     const index = this.persons.findIndex(p => p.id === id);
     this.persons.splice(index, 1);
   }
