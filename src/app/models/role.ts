@@ -1,4 +1,4 @@
 export enum Role {
-  Etudiant,
-  Intervenant
+  Etudiant = 'Etudiant',
+  Intervenant = 'Intervenant'
 };
